@@ -1,41 +1,71 @@
 # DeCo
 
-Source Code of "Learning to Handle Constrained Routing Problems From a Decoupling Perspective"
+Official source code for **"Learning to Handle Constrained Routing Problems From a Decoupling Perspective"**.
 
-  ## Quick Start
 
-  This project implements DeCo-based models for TSPDL and TSPTW. The following minimal steps get you running quickly.
+```
+## Quick Start
 
-  Requirements:
+This repository implements DeCo-based models for **TSPDL** and **TSPTW**.
 
-  - Python 3.8+
-  - PyTorch, numpy, matplotlib, pytz
+## Requirements
 
-  Install basic dependencies:
+* Python 3.8+
+* Dependencies listed in `requirements.txt`
 
-  ```bash
-  pip install torch numpy matplotlib pytz
-  ```
+Install the required dependencies:
 
-  Run training (example for TSPDL):
+```bash
+pip install -r requirements.txt
+```
 
-  ```bash
-  cd DeCo/TSPDL
-  # edit train.py to set data/model/config if needed
-  python train.py
-  ```
+## Training
 
-  Run testing (example for TSPDL):
+Example for TSPDL:
 
-  ```bash
-  cd DeCo/TSPDL
-  # set model_load_path and model_load_epoch inside test.py
-  python test.py
-  ```
+```bash
+cd DeCo/TSPDL
+python train.py
+```
 
-  Notes:
+Please modify `train.py` as needed to specify the dataset, model configuration, and training settings.
 
-  - Ensure `env_params` and `trainer_params` in `train.py` (or `tester_params` in `test.py`) point to existing data and pretrained model paths.
+## Testing
 
-  That's it — edit the config in `train.py`/`test.py`, then run the appropriate script.
+Example for TSPDL:
 
+```bash
+cd DeCo/TSPDL
+python test.py
+```
+
+Before running evaluation, set the model checkpoint and data paths in `test.py`, including `model_load_path`, `model_load_epoch`, `data_path`, and `solution_path`.
+
+Example configuration for TSPTW-50:
+
+```python
+model_load_path = 'pretrained/Deco/TSPTW/Deco50'
+model_load_epoch = 100
+
+data_path = './data/tsptw50_easy.pkl'
+solution_path = './data/lkh_tsptw50_easy.pkl'
+```
+## Citation
+if you find this work useful, please cite our paper:
+```
+@inproceedings{cao2026deco,
+  author    = {Rui Cao and Zhiguang Cao and Yihan Huang and Jiaqi Wang and Yuan Jiang and Yubin Xiao and You Zhou},
+  title     = {Learning to Handle Constrained Routing Problems From a Decoupling Perspective},
+  booktitle = {Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2},
+  year      = {2026},
+}
+```
+
+## Acknowledgments
+
+We would like to thank the following repository. Our code is based on their implementation:
+
+
+https://github.com/CIAM-Group/NCO_code/tree/main/single_objective/LEHD
+
+https://github.com/jieyibi/PIP-constraint
